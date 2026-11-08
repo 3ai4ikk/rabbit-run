@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eef3f8">
+  <meta name="description" content="Все события RabbitRun: цены в баллах Twitch, рублях DonationAlerts и монетах TikTok. Найдите событие и выберите, что произойдёт на стриме.">
+  <title>RabbitRun — события и цены</title>
+  <link rel="icon" href="./rabbit.webp" type="image/webp">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./events.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#catalog">К списку событий</a>
+  <div class="page">
+    <header class="masthead">
+      <a class="brand" href="./" aria-label="RabbitRun — главная"><img src="./rabbit.webp" alt="" width="36" height="36"><span>Rabbit<span class="brand-light">Run</span></span></a>
+      <span class="masthead-label">КАТАЛОГ ДЛЯ ЗРИТЕЛЕЙ <span class="pixel-dot" aria-hidden="true"></span></span>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">ИНТЕРАКТИВНЫЙ MINECRAFT</p>
+          <h1 id="page-title">Выбирай, что случится<br><span>на стриме.</span></h1>
+          <p class="hero-description">Перевернуть мир, устроить хаос или призвать босса.<br class="desktop-break"> Все события и цены — в одном месте.</p>
+          <a class="donate-link" href="https://www.donationalerts.com/r/hasee" target="_blank" rel="noopener noreferrer">Отправить донат <span aria-hidden="true">↗</span><span class="sr-only"> — DonationAlerts, откроется в новой вкладке</span></a>
+        </div>
+        <div class="hero-art" aria-hidden="true"><div class="art-grid"></div><img src="./rabbit.webp" alt="" width="180" height="180"><span class="art-label">ТВОЙ ХОД</span><span class="art-pixel one"></span><span class="art-pixel two"></span><span class="art-pixel three"></span></div>
+      </section>
+
+      <section id="catalog" class="catalog" aria-labelledby="catalog-title">
+        <div class="catalog-heading"><h2 id="catalog-title">События</h2><span id="result-count" class="count">42 события</span></div>
+        <div class="toolbar">
+          <div class="platform-group" role="group" aria-label="Сортировать по цене платформы">
+            <button class="platform twitch" data-platform="twitch" aria-pressed="false"><span class="platform-dot" aria-hidden="true"></span>Twitch<span class="unit">баллы</span></button>
+            <button class="platform donation" data-platform="donation" aria-pressed="true"><span class="platform-dot" aria-hidden="true"></span>DonationAlerts<span class="unit">рубли</span></button>
+            <button class="platform tiktok" data-platform="tiktok" aria-pressed="false"><span class="platform-dot" aria-hidden="true"></span>TikTok<span class="unit">монеты</span></button>
+          </div>
+          <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span class="sr-only">Найти событие по названию или описанию</span><input id="search" type="search" placeholder="Найти событие…" autocomplete="off" maxlength="200"></label>
+          <p id="sort-hint" class="sort-hint">От меньшей цены DonationAlerts к большей <span aria-hidden="true">↓</span></p>
+        </div>
+
+        <div class="table-wrap">
+          <table id="events-table">
+            <caption class="sr-only">События RabbitRun, их длительность и стоимость на каждой платформе. Заголовки цен меняют сортировку.</caption>
+            <colgroup><col class="event-col"><col class="price-col"><col class="price-col"><col class="price-col"></colgroup>
+            <thead><tr>
+              <th scope="col" class="event-heading">Что произойдёт</th>
+              <th scope="col" data-column="twitch" aria-sort="none"><button class="sort-button" data-sort="twitch">Twitch <span class="sort-arrow" aria-hidden="true">↕</span><span class="column-unit">баллы канала</span></button></th>
+              <th scope="col" data-column="donation" aria-sort="ascending"><button class="sort-button" data-sort="donation">DonationAlerts <span class="sort-arrow" aria-hidden="true">↓</span><span class="column-unit">рубли</span></button></th>
+              <th scope="col" data-column="tiktok" aria-sort="none"><button class="sort-button" data-sort="tiktok">TikTok <span class="sort-arrow" aria-hidden="true">↕</span><span class="column-unit">монеты</span></button></th>
+            </tr></thead>
+            <tbody id="events-body"></tbody>
+          </table>
+          <div id="empty" class="empty" hidden><img src="./rabbit.webp" alt="" width="44" height="44"><h3>Такого события не нашлось</h3><p>Попробуйте другое название или слово из описания.</p><button id="reset-search" class="reset-search">Очистить поиск</button></div>
+        </div>
+        <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+        <noscript><p class="notice">Для поиска, сортировки и отображения каталога включите JavaScript в браузере.</p></noscript>
+      </section>
+
+      <aside class="notes" aria-label="Как активировать событие">
+        <div class="note-marker" aria-hidden="true">!</div>
+        <div><h2>Сумма должна совпадать точно</h2><p>В DonationAlerts выбирайте рубли и указанную сумму. В TikTok учитывается стоимость одного подарка или завершённой серии одинаковых подарков. Баллы Twitch, рубли и монеты — разные единицы.</p><p class="note-secondary">Перезарядка действует только на Twitch и указана под ценой. Повторное включение уже активного эффекта может быть недоступно. События активируются на платформе стрима — эта страница показывает расценки.</p></div>
+      </aside>
+    </main>
+    <footer><span class="footer-brand">RabbitRun <span>·</span> Интерактивный Minecraft</span><span>Цены обновлены <time datetime="2026-11-08">8 ноября 2026</time></span><a href="#page-title">Наверх ↑</a></footer>
+  </div>
+</body>
+</html>
